@@ -1,0 +1,24 @@
+{
+  "name": "kafka-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@kafkajs/zstd": "^0.1.1",
+    "azure-pipelines-task-lib": "^4.13.0",
+    "fs": "^0.0.1-security",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.14.1",
+    "@types/q": "^1.5.8",
+    "sync-request": "^6.1.0"
+  }
+}

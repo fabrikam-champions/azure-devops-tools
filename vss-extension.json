@@ -1,0 +1,40 @@
+{
+    "manifestVersion": 1,
+    "id": "fabrikam-champions",
+    "name": "Fabrikam Champions Azure DevOps Tools",
+    "version": "1.0.0",
+    "publisher": "FabrikamChampions",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for building/releasing with Azure DevOps. Includes build/release tasks.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "icon.png"        
+    },
+    "files": [        
+        {
+            "path": "kafkaproducertask"
+        },        
+        {
+            "path": "node_modules",
+            "packagePath":"kafkaproducertask/node_modules"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "kafka-producer-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "kafkaproducertask"
+            }
+        }
+    ]
+}

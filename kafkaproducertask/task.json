@@ -1,0 +1,79 @@
+{
+ "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+ "id": "d69e8d9c-8200-4756-bb21-452be660e460",
+ "name": "KafkaProducer",
+ "friendlyName": "Kafka Producer",
+ "description": "This custom task integrates with Azure DevOps pipelines to process files within your build artifacts and publish their content as Kafka messages. It provides flexibility to define message headers and keys based on pipeline variables and the source filename",
+ "helpMarkDown": "",
+ "category": "Utility",
+ "author": "Fabrikam Champions",
+ "version": {
+     "Major": 1,
+     "Minor": 0,
+     "Patch": 0
+ },
+ "instanceNameFormat": "Kafka Producer $(filePath)",
+ "inputs": [
+     {
+         "name": "filePath",
+         "type": "filePath",
+         "label": "File Path",
+         "defaultValue": "**/*.json",
+         "required": true,
+         "helpMarkDown": "The path of kafka message files"
+     },
+     {
+        "name": "validateContent",
+        "type": "boolean",
+        "label": "Validate JSON",
+        "defaultValue": true,
+        "required": true,
+        "helpMarkDown": "Ensure that kafka message files have valid JSON content"
+    },
+    {
+        "name": "topic",
+        "type": "string",
+        "label": "Topic",
+        "defaultValue": "${fileName}",
+        "required": true,
+        "helpMarkDown": "The kafka topic name"
+    },
+    {
+        "name": "key",
+        "type": "string",
+        "label": "Key",
+        "defaultValue": "${system.taskInstanceId}",
+        "required": true,
+        "helpMarkDown": "The kafka message key"
+    },
+    {
+        "name": "headers",
+        "type": "string",
+        "label": "Headers",
+        "defaultValue": "{\"build.repository.name\":\"${build.repository.name}\"}",
+        "required": false,
+        "helpMarkDown": "The kafka message headers JSON object"
+    },
+    {
+        "name": "kafkaConfig",
+        "type": "string",
+        "label": "Kafka Config",
+        "defaultValue": "{\"brokers\":\"localhost:9092\"}",
+        "required": true,
+        "helpMarkDown": "The kafka config JSON object"
+    },
+    {
+        "name": "producerConfig",
+        "type": "string",
+        "label": "Producer Config",
+        "defaultValue": "{}",
+        "required": false,
+        "helpMarkDown": "The kafka producer config JSON object"
+    }
+ ],
+ "execution": {
+    "Node16": {
+        "target": "index.js"
+    }
+ }
+ }
