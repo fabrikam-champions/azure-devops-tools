@@ -48,7 +48,7 @@ function getFileNameWithoutExtension(filePath: string): string {
 }
 const run = async()=>{
     //Get pipeline variables
-    const vars = variablesToObject(tl.getVariables());
+    const vars = tl.getVariables().length ? variablesToObject(tl.getVariables()) :  process.env;
     //Set config
     const taskConfig = new TaskConfig();
     taskConfig.filePath = tl.getInput('filePath') || '';
@@ -88,10 +88,11 @@ const run = async()=>{
     }
 
     const kafkaConfig = JSON.parse(substitute(taskConfig.kafkaConfig, vars));
+    if(kafkaConfig?.ssl?.ca) {
+        kafkaConfig.ssl.ca = [fs.readFileSync(kafkaConfig.ssl.ca, 'utf-8')]
+    }
+    const kafka = new Kafka(kafkaConfig);
     const producerConfig = JSON.parse(substitute(taskConfig.producerConfig, vars));
-    const kafka = new Kafka({...kafkaConfig,
-        ssl: { rejectUnauthorized: false, ca: [fs.readFileSync('/my/custom/ca.crt', 'utf-8')] }
-    });
     const producer = kafka.producer(producerConfig);
 
     try

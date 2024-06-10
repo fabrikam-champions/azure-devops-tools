@@ -1,9 +1,17 @@
 {
     "manifestVersion": 1,
-    "id": "fabrikam-champions",
+    "id": "azure-devops-tools",
     "name": "Fabrikam Champions Azure DevOps Tools",
     "version": "1.0.0",
-    "publisher": "FabrikamChampions",
+    "publisher": "fabrikam-champions",
+    "galleryFlags": [
+        "Public"
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"

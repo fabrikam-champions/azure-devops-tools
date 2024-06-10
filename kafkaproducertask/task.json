@@ -1,6 +1,6 @@
 {
  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
- "id": "d69e8d9c-8200-4756-bb21-452be660e460",
+ "id": "5dcc62de-bfd2-4d03-98cc-599c96a6056c",
  "name": "KafkaProducer",
  "friendlyName": "Kafka Producer",
  "description": "This custom task integrates with Azure DevOps pipelines to process files within your build artifacts and publish their content as Kafka messages. It provides flexibility to define message headers and keys based on pipeline variables and the source filename",
