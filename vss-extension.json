@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "azure-devops-tools",
     "name": "Fabrikam Champions Azure DevOps Tools",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "fabrikam-champions",
     "galleryFlags": [
         "Public"
@@ -10,6 +10,10 @@
     "tags": [
         "Kafka"
     ],    
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/fabrikam-champions/azure-devops-tools"
+    },
     "content": {
         "details": {
             "path": "overview.md"
