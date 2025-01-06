@@ -141,6 +141,10 @@ const run = async () => {
             });
         }
         console.log('Kafka messages sent!');
+        let fileNames = files.map((file) => getFileNameWithoutExtension(file));
+        tl.setVariable("filePaths", JSON.stringify(files), false, true);
+        tl.setVariable("fileNames", JSON.stringify(fileNames), false, true);
+        tl.setVariable("filesCount", files.length.toString(), false, true);
         tl.setResult(tl.TaskResult.Succeeded, 'Kafka messages sent!');
     }
     catch (err) {

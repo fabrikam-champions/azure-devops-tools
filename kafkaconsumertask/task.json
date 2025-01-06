@@ -1,0 +1,101 @@
+{
+ "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+ "id": "c5262a9b-e65f-4554-9e90-d3544cc71927",
+ "name": "KafkaConsumer",
+ "friendlyName": "Kafka Consumer",
+ "description": "This custom task integrates with Azure DevOps pipelines to consume Kafka messages.",
+ "helpMarkDown": "",
+ "category": "Utility",
+ "author": "Fabrikam Champions",
+ "version": {
+     "Major": 1,
+     "Minor": 0,
+     "Patch": 21
+ },
+ "instanceNameFormat": "Kafka Consumer $(topic)",
+ "inputs": [
+    {
+        "name": "topic",
+        "type": "string",
+        "label": "Topic",
+        "defaultValue": "",
+        "required": true,
+        "helpMarkDown": "The kafka topic name"
+    },
+    {
+        "name": "kafkaConfig",
+        "type": "string",
+        "label": "Kafka Config",
+        "defaultValue": "{\"brokers\":[\"localhost:9092\"]}",
+        "required": true,
+        "helpMarkDown": "The kafka config JSON object"
+    },
+    {
+        "name": "consumerConfig",
+        "type": "string",
+        "label": "Consumer Config",
+        "defaultValue": "{\"groupId\":\"${build.repository.name}\"}",
+        "required": true,
+        "helpMarkDown": "The kafka consumer config JSON object"
+    },
+    {
+        "name": "filters",
+        "type": "string",
+        "label": "Filters",
+        "defaultValue": "{\"headers\":{\"module\":\"${build.repository.name}\"}}",
+        "required": false,
+        "helpMarkDown": "The conditions that should be met on the message headers or key"
+    },
+    {
+        "name": "count",
+        "type": "string",
+        "label": "Count",
+        "defaultValue": "1",
+        "required": true,
+        "helpMarkDown": "The count of messages expected to be consumed before marking the task as complete"
+    }       
+ ],
+ "execution": {
+    "Node16": {
+        "target": "index.js"
+    }
+ },
+ "outputVariables": [
+    {
+        "name" : "message",
+        "description" : "The last consumed message"
+    }, 
+    {
+        "name" : "messageKey",
+        "description" : "The key of the last consumed message"
+    }, 
+    {
+        "name" : "messageValue",
+        "description" : "The value of the last consumed message"
+    }, 
+    {
+        "name" : "messageHeader",
+        "description" : "The headers of the last consumed message"
+    },
+    {
+        "name" : "messages",
+        "description" : "The consumed messages"
+    }, 
+    {
+        "name" : "messageKeys",
+        "description" : "The keys array of the consumed messages"
+    }, 
+    {
+        "name" : "messageValues",
+        "description" : "The value array of the consumed messages"
+    }, 
+    {
+        "name" : "messageHeaders",
+        "description" : "The headers array of the consumed messages"
+    },
+    {
+        "name" : "messagesCount",
+        "description" : "The count of the consumed messages"
+    }
+]
+ }

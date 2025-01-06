@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tmrm = require("azure-pipelines-task-lib/mock-run");
+const path = require("path");
+let taskPath = path.join(__dirname, '..', 'index.js');
+let tmr = new tmrm.TaskMockRunner(taskPath);
+tmr.setInput('topic', 'test_topic');
+tmr.setInput('kafkaConfig', '{"brokers":["192.168.1.60:31661"]}');
+tmr.setInput('consumerConfig', '{"groupId":"test_group_id"}');
+tmr.setInput('timeout', '30');
+tmr.run();

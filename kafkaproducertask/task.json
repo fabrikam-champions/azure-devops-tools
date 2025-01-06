@@ -10,7 +10,7 @@
  "version": {
      "Major": 1,
      "Minor": 0,
-     "Patch": 4
+     "Patch": 21
  },
  "instanceNameFormat": "Kafka Producer $(filePath)",
  "inputs": [
@@ -58,7 +58,7 @@
         "name": "kafkaConfig",
         "type": "string",
         "label": "Kafka Config",
-        "defaultValue": "{\"brokers\":\"localhost:9092\"}",
+        "defaultValue": "{\"brokers\":[\"localhost:9092\"]}",
         "required": true,
         "helpMarkDown": "The kafka config JSON object"
     },
@@ -75,5 +75,19 @@
     "Node16": {
         "target": "index.js"
     }
- }
+ },
+ "outputVariables": [
+    {
+        "name" : "filePaths",
+        "description" : "The array of processed file paths"
+    }, 
+    {
+        "name" : "fileNames",
+        "description" : "The array of processed file names"
+    }, 
+    {
+        "name" : "filesCount",
+        "description" : "The number of processed files"
+    }
+]
  }
